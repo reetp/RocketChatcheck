@@ -1,15 +1,20 @@
 <?php
-include './simple_html_dom.php';
 
-$verFile    = './latest.ver';
+$rootDir = '/root/scripts/RocketCheck';
+
+include $rootDir . '/simple_html_dom.php';
+
+$verFile    = $rootDir . '/latest.ver';
+
+$inputFile = $rootDir . '/RocketGit.html';
 
 $emailAddress = "admin@somedomain.com";
 
-if (file_exists && is_readable('./RocketGit.html')) {
+if (file_exists && is_readable($inputFile)) {
 
     //$prevVersion =
     // Create a DOM object from a HTML file
-    $html       = file_get_html('./RocketGit.html');
+    $html       = file_get_html($inputFile);
     /*
      *  <table class="releases-tag-list" data-pjax>
      *    <tr>
