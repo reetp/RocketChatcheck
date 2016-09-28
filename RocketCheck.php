@@ -59,10 +59,10 @@ if (file_exists && is_readable($inputFile)) {
     if ($oldVersion == "" || $version > $oldVersion) {
         $write      = writeMyFile($verFile, $version);
         if ($version > $oldVersion) {
-            mail("$emailAddress", "RocketChat Update", "New Rocketchat $version available", "From: $emailAddress");
+            mail("$emailAddress", "RocketChat Update Available", "New Rocketchat $version available", "From: $emailAddress");
         }
     } else {
-        mail("$emailAddress", "RocketChat Update", "Current version $version - no updates available", "From: $emailAddress");
+        mail("$emailAddress", "RocketChat Update Not Available", "Current version $version - no updates available", "From: $emailAddress");
     }
 
 } else {
