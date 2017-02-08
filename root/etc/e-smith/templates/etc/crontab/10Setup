@@ -1,0 +1,4 @@
+# Check for Rocket Updates
+15 12 * * * root /usr/bin/wget https://github.com/RocketChat/Rocket.Chat/tags -O /root/scripts/RocketCheck/RocketGit.html >>/dev/null 2>&1; /usr/bin/php -f /root/scripts/RocketCheck/RocketCheck.php
+
+20 12 * * * root /usr/bin/wget https://github.com/RocketChat/Rocket.Chat.Electron/tags -O /root/scripts/RocketCheck/RocketClient.html >>/dev/null 2>&1; /usr/bin/php -f /root/scripts/RocketCheck/RocketClient.php
