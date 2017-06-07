@@ -1,11 +1,13 @@
 <?php
-$rootDir = '/root/scripts/RocketCheck';
 
-include $rootDir . '/simple_html_dom.php';
+//$rootDir = '/root/scripts/RocketCheck';
+$rootDir = './';
 
-$verFile    = $rootDir . '/latestClient.ver';
+include $rootDir . 'simple_html_dom.php';
 
-$inputFile = $rootDir . '/RocketClient.html';
+$verFile    = $rootDir . 'latestClient.ver';
+
+$inputFile = $rootDir . 'RocketClient.html';
 
 $emailAddress = "admin@reetspetit.net";
 
@@ -71,21 +73,23 @@ if (file_exists && is_readable($inputFile)) {
 // Simple write a line of data to a file
 function writeMyFile($outputFilename, $strData)
 {
-    $handle = fopen($outputFilename, "w+");
+    $handle = fopen($outputFilename, "w");
     fwrite($handle, $strData);
     fclose($handle);
 }
 
 // Simple read a line of data to a file
-function readMyFile($outputFilename)
+function readMyFile($inputFilename)
 {
-    if (file_exists($outputFilename)) {
+    if (file_exists($inputFilename)) {
         //echo "Exists<br />";
-        if (is_readable($outputFilename)) {
+        if (is_readable($inputFilename)) {
             //echo "readable<br />";
-            $handle  = fopen($outputFilename, "r+");
-            $version = fread($handle, filesize("./$outputFileName"));
+            $fSize = filesize($inputFilename);
+            $handle  = fopen($inputFilename, "r");
+            $version = fread($handle, filesize($inputFilename));
             fclose($handle);
+            $version = str_replace(PHP_EOL, '', $version);
             return $version;
         } else {
             $version == "";
