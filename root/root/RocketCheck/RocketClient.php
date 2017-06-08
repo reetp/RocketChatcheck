@@ -9,7 +9,7 @@ $verFile    = $rootDir . 'latestClient.ver';
 
 $inputFile = $rootDir . 'RocketClient.html';
 
-$emailAddress = "admin@reetspetit.net";
+$emailAddress = "admin@somedomain.com";
 
 if (file_exists && is_readable($inputFile)) {
 
