@@ -1,11 +1,10 @@
 <?php
-
 //$rootDir = '/root/scripts/RocketCheck';
 $rootDir = './';
 
 include $rootDir . 'simple_html_dom.php';
 
-$verFile    = $rootDir . 'latest.ver';
+$verFile = $rootDir . 'latest.ver';
 
 $inputFile = $rootDir . 'RocketGit.html';
 
@@ -15,7 +14,7 @@ if (file_exists && is_readable($inputFile)) {
 
     //$prevVersion =
     // Create a DOM object from a HTML file
-    $html       = file_get_html($inputFile);
+    $html = file_get_html($inputFile);
     /*
      *  <table class="releases-tag-list" data-pjax>
      *    <tr>
@@ -26,7 +25,7 @@ if (file_exists && is_readable($inputFile)) {
      *     </td>
     */
 
-    $version    = array();
+    $version = array();
 
     foreach ($html->find('td') as $td) {
 
@@ -38,33 +37,30 @@ if (file_exists && is_readable($inputFile)) {
 
             foreach ($td->find('a') as $href) {
                 //echo $href->innertext;
-                $link       = $href->href;
+                $link = $href->href;
                 if (preg_match('/[\/]RocketChat[\/]Rocket.Chat[\/]releases[\/]tag[\/]/', $link)) {
                     //        echo "Link $link<br />";
-                    $version[]            = preg_replace('/[\/]RocketChat[\/]Rocket.Chat[\/]releases[\/]tag[\/]/', '', $link);
+                    $version[] = preg_replace('/[\/]RocketChat[\/]Rocket.Chat[\/]releases[\/]tag[\/]/', '', $link);
                     //echo "Version $version<br />";
-                    
                 }
                 //echo $link->innertext;
-                
             }
-
         }
-
     }
-    $version    = array_unique($version);
-    foreach($version as $eachVersion){
-	$VCV = version_compare($eachVersion, $highest);
-	if ($VCV == 1){
-	    $highest = $eachVersion;
-	}
+	
+    $version = array_unique($version);
+    foreach ($version as $eachVersion) {
+        $VCV = version_compare($eachVersion, $highest);
+        if ($VCV == 1) {
+            $highest = $eachVersion;
+        }
     }
     $version = $highest;
 
     $oldVersion = readMyFile($verFile);
 
     if ($oldVersion == "" || $version > $oldVersion) {
-        $write      = writeMyFile($verFile, $version);
+        $write = writeMyFile($verFile, $version);
         if ($version > $oldVersion) {
             mail("$emailAddress", "RocketChat Update Available", "New Rocketchat $version available", "From: $emailAddress");
         }
@@ -73,7 +69,7 @@ if (file_exists && is_readable($inputFile)) {
     }
 
 } else {
-  exit;
+    exit;
 }
 
 // Simple write a line of data to a file
@@ -92,7 +88,7 @@ function readMyFile($inputFilename)
         if (is_readable($inputFilename)) {
             //echo "readable<br />";
             $fSize = filesize($inputFilename);
-            $handle  = fopen($inputFilename, "r");
+            $handle = fopen($inputFilename, "r");
             $version = fread($handle, filesize($inputFilename));
             fclose($handle);
             $version = str_replace(PHP_EOL, '', $version);
