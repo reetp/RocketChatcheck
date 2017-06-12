@@ -1,7 +1,7 @@
 <?php
 
-//$rootDir = '/root/scripts/RocketCheck';
-$rootDir = './';
+$rootDir = '/root/scripts/RocketCheck';
+//$rootDir = './';
 
 include $rootDir . 'simple_html_dom.php';
 
