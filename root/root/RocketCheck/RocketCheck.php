@@ -42,12 +42,14 @@ if (file_exists && is_readable($inputFile)) {
                     //        echo "Link $link<br />";
                     $version[] = preg_replace('/[\/]RocketChat[\/]Rocket.Chat[\/]releases[\/]tag[\/]/', '', $link);
                     //echo "Version $version<br />";
+                    
                 }
                 //echo $link->innertext;
+                
             }
         }
     }
-	
+
     $version = array_unique($version);
     foreach ($version as $eachVersion) {
         $VCV = version_compare($eachVersion, $highest);
@@ -62,7 +64,8 @@ if (file_exists && is_readable($inputFile)) {
     if ($oldVersion == "" || $version > $oldVersion) {
         $write = writeMyFile($verFile, $version);
         if ($version > $oldVersion) {
-            mail("$emailAddress", "RocketChat Update Available", "New Rocketchat $version available", "From: $emailAddress");
+            mail("$emailAddress", "RocketChat Server New Version $version available", "New Rocketchat $version available\nhttps://github.com/RocketChat/Rocket.Chat/tags
+				 ", "From: $emailAddress");
         }
     } else {
         mail("$emailAddress", "RocketChat Update Not Available", "Current version $version - no updates available", "From: $emailAddress");
