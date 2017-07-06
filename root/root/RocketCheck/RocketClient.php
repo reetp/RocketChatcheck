@@ -9,7 +9,7 @@ $verFile    = $rootDir . 'latestClient.ver';
 
 $inputFile = $rootDir . 'RocketClient.html';
 
-$emailAddress = "admin@reetspetit.net";
+$emailAddress = "admin@somedomain.com";
 
 if (file_exists && is_readable($inputFile)) {
 
@@ -53,7 +53,13 @@ if (file_exists && is_readable($inputFile)) {
 
     }
     $version    = array_unique($version);
-    $version    = max($version);
+    foreach($version as $eachVersion){
+	$VCV = version_compare($eachVersion, $highest);
+	if ($VCV == 1){
+	    $highest = $eachVersion;
+	}
+    }
+    $version = $highest;
 
     $oldVersion = readMyFile($verFile);
 
