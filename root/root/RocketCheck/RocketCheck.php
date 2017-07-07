@@ -68,7 +68,7 @@ if (file_exists && is_readable($inputFile)) {
 				 ", "From: $emailAddress");
         }
     } else {
-        mail("$emailAddress", "RocketChat Update Not Available", "Current version $version - no updates available", "From: $emailAddress");
+        mail("$emailAddress", "RocketChat Server Update - No New Version Available", "Current version $version - no updates available", "From: $emailAddress");
     }
 
 } else {
